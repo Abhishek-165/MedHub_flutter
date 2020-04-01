@@ -1,9 +1,9 @@
-import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'dart:async';
-import 'dart:convert';
+
 import 'package:firebase_database/firebase_database.dart';
-import 'dart:collection';
+import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Pharmacy extends StatefulWidget {
   @override
@@ -144,7 +144,10 @@ class _PharmacyState extends State<Pharmacy> {
                       margin: EdgeInsets.only(
                           top: MediaQuery.of(context).size.height * 0.25),
                       child: Center(
-                        child: Text("Loading....."),
+                        child: SpinKitFadingCircle(
+                          color: Colors.red,
+                          size: 50,
+                        ),
                       ),
                     );
                   } else {

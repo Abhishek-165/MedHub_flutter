@@ -1,5 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class DiagnosticLab extends StatefulWidget {
@@ -126,7 +127,10 @@ class _DiagnosticLabState extends State<DiagnosticLab> {
                       margin: EdgeInsets.only(
                           top: MediaQuery.of(context).size.height * 0.25),
                       child: Center(
-                        child: Text("Loading....."),
+                        child: SpinKitFadingCircle(
+                          color: Colors.red,
+                          size: 50,
+                        ),
                       ),
                     );
                   } else {

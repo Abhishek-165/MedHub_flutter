@@ -1,11 +1,12 @@
-import 'package:flutter/material.dart';
-import 'package:med/hospdetail.dart';
-
-import 'package:url_launcher/url_launcher.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:med/hospdetail.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Hosp extends StatefulWidget {
   final String speciality;
+
   Hosp(this.speciality);
 
   @override
@@ -242,7 +243,10 @@ class _HospState extends State<Hosp> {
                       margin: EdgeInsets.only(
                           top: MediaQuery.of(context).size.height * 0.25),
                       child: Center(
-                        child: Text("Loading....."),
+                        child: SpinKitFadingCircle(
+                          color: Colors.red,
+                          size: 50,
+                        ),
                       ),
                     );
                   } else {
@@ -275,7 +279,7 @@ class _HospState extends State<Hosp> {
                                   ),
                                   child: Column(
                                     crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                    CrossAxisAlignment.start,
                                     children: <Widget>[
                                       Image.network(snapshot.data[index].Photo),
                                       Row(
@@ -284,15 +288,15 @@ class _HospState extends State<Hosp> {
                                             padding: EdgeInsets.only(left: 10),
                                             child: SizedBox(
                                               width: (MediaQuery.of(context)
-                                                          .size
-                                                          .width *
-                                                      0.65) -
+                                                  .size
+                                                  .width *
+                                                  0.65) -
                                                   72,
                                               child: Text(
                                                   snapshot.data[index].Name,
                                                   style: TextStyle(
                                                       fontWeight:
-                                                          FontWeight.bold,
+                                                      FontWeight.bold,
                                                       fontSize: 16)),
                                             ),
                                           ),

@@ -1,6 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Ambulance extends StatefulWidget {
   @override
@@ -23,7 +24,7 @@ class _AmbulanceState extends State<Ambulance> {
     map.values.forEach((u) {
       if (dropdownvalue == u["Location"]) {
         Ambulances ambulance =
-            Ambulances(u["Location"], u["Name"], u["Number"]);
+        Ambulances(u["Location"], u["Name"], u["Number"]);
         ambul.add(ambulance);
       }
     });
@@ -117,7 +118,10 @@ class _AmbulanceState extends State<Ambulance> {
                       margin: EdgeInsets.only(
                           top: MediaQuery.of(context).size.height * 0.25),
                       child: Center(
-                        child: Text("Loading....."),
+                        child: SpinKitFadingCircle(
+                          color: Colors.red,
+                          size: 50,
+                        ),
                       ),
                     );
                   } else {
@@ -146,9 +150,9 @@ class _AmbulanceState extends State<Ambulance> {
                                           padding: EdgeInsets.only(left: 10),
                                           child: SizedBox(
                                             width: (MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    0.70) -
+                                                .size
+                                                .width *
+                                                0.70) -
                                                 48,
                                             child: Text(
                                               snapshot.data[index].Name,
@@ -161,7 +165,7 @@ class _AmbulanceState extends State<Ambulance> {
                                         IconButton(
                                           icon: Icon(Icons.phone),
                                           color:
-                                              Color.fromARGB(255, 232, 56, 77),
+                                          Color.fromARGB(255, 232, 56, 77),
                                           onPressed: () {
                                             _launchCaller(
                                                 snapshot.data[index].Number);

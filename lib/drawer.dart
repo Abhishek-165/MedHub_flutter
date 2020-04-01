@@ -1,10 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:med/BottomNavigationBar.dart';
 import 'package:med/ambulance.dart';
-import 'package:med/main.dart';
-import 'package:med/quick_access.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:med/chatbot.dart';
 import 'package:med/loginpage.dart';
+import 'package:med/quick_access.dart';
 
 class Drawers extends StatefulWidget {
   @override
@@ -25,9 +25,9 @@ class _DrawersState extends State<Drawers> {
               accountEmail: Text("codeblooded.io@gmail.com"),
               currentAccountPicture: CircleAvatar(
                 backgroundColor:
-                    Theme.of(context).platform == TargetPlatform.iOS
-                        ? Colors.blue
-                        : Colors.white,
+                Theme.of(context).platform == TargetPlatform.iOS
+                    ? Colors.blue
+                    : Colors.white,
                 child: Text(
                   "A",
                   style: TextStyle(fontSize: 40.0),
@@ -48,9 +48,9 @@ class _DrawersState extends State<Drawers> {
             ListTile(
                 leading: new Tab(
                     icon: new Image.asset(
-                  "images/siren.png",
-                  color: Colors.grey[600],
-                )),
+                      "images/siren.png",
+                      color: Colors.grey[600],
+                    )),
                 title: Text('Ambulance'),
                 onTap: () {
                   Navigator.pop(context);
@@ -91,7 +91,12 @@ class _DrawersState extends State<Drawers> {
               ),
               title: Text('MedBot'),
               onTap: () {
-                //   Navigator.pop(context);
+                Navigator.pop(context);
+                // close drawer before navigate to another page
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ChatBot()),
+                );
               },
             ),
             ListTile(

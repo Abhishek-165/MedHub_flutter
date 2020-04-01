@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
-
-import 'package:url_launcher/url_launcher.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class BloodBank extends StatefulWidget {
   @override
@@ -164,7 +164,10 @@ class _BloodBankState extends State<BloodBank> {
                       margin: EdgeInsets.only(
                           top: MediaQuery.of(context).size.height * 0.25),
                       child: Center(
-                        child: Text("Loading....."),
+                        child: SpinKitFadingCircle(
+                          color: Colors.red,
+                          size: 50,
+                        ),
                       ),
                     );
                   } else {
@@ -191,9 +194,9 @@ class _BloodBankState extends State<BloodBank> {
                                               top: 10, left: 10),
                                           child: SizedBox(
                                             width: (MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    0.70) -
+                                                .size
+                                                .width *
+                                                0.70) -
                                                 48,
                                             child: Text(
                                               snapshot.data[index].Name,
@@ -206,7 +209,7 @@ class _BloodBankState extends State<BloodBank> {
                                         IconButton(
                                           icon: Icon(Icons.phone),
                                           color:
-                                              Color.fromARGB(255, 232, 56, 77),
+                                          Color.fromARGB(255, 232, 56, 77),
                                           onPressed: () {
                                             _launchCaller(
                                                 snapshot.data[index].Phone);
@@ -215,7 +218,7 @@ class _BloodBankState extends State<BloodBank> {
                                         IconButton(
                                           icon: Icon(Icons.location_on),
                                           color:
-                                              Color.fromARGB(255, 232, 56, 77),
+                                          Color.fromARGB(255, 232, 56, 77),
                                           onPressed: () {
                                             openMap(snapshot.data[index].Link);
                                           },
@@ -224,7 +227,7 @@ class _BloodBankState extends State<BloodBank> {
                                     ),
                                     Container(
                                       padding:
-                                          EdgeInsets.fromLTRB(15, 5, 15, 15),
+                                      EdgeInsets.fromLTRB(15, 5, 15, 15),
                                       child: Text(
                                         snapshot.data[index].Address,
                                         style: TextStyle(
@@ -234,9 +237,9 @@ class _BloodBankState extends State<BloodBank> {
                                     Theme(
                                       data: ThemeData(
                                           primaryColor:
-                                              Color.fromARGB(255, 232, 56, 77),
+                                          Color.fromARGB(255, 232, 56, 77),
                                           accentColor:
-                                              Color.fromARGB(255, 232, 56, 77),
+                                          Color.fromARGB(255, 232, 56, 77),
                                           dividerColor: Colors.white),
                                       child: Container(
                                         padding: EdgeInsets.only(bottom: 10),
@@ -251,22 +254,22 @@ class _BloodBankState extends State<BloodBank> {
                                                         style: TextStyle(
                                                             fontSize: 14,
                                                             fontWeight:
-                                                                FontWeight
-                                                                    .bold))),
+                                                            FontWeight
+                                                                .bold))),
                                                 DataColumn(
                                                     label: Text("Availability",
                                                         style: TextStyle(
                                                             fontSize: 14,
                                                             fontWeight:
-                                                                FontWeight
-                                                                    .bold))),
+                                                            FontWeight
+                                                                .bold))),
                                                 DataColumn(
                                                     label: Text("Unit",
                                                         style: TextStyle(
                                                             fontSize: 14,
                                                             fontWeight:
-                                                                FontWeight
-                                                                    .bold)))
+                                                            FontWeight
+                                                                .bold)))
                                               ],
                                               rows: [
                                                 DataRow(cells: [
@@ -357,7 +360,7 @@ class _BloodBankState extends State<BloodBank> {
                                                   DataCell(Text(
                                                     "AB-ve",
                                                     style:
-                                                        TextStyle(fontSize: 14),
+                                                    TextStyle(fontSize: 14),
                                                   )),
                                                   DataCell(getIcon(snapshot
                                                       .data[index].ABneg)),
@@ -404,8 +407,7 @@ class BloodBankDetail {
   final int Opos;
   final String Phone;
 
-  BloodBankDetail(
-      this.ABneg,
+  BloodBankDetail(this.ABneg,
       this.ABpos,
       this.Address,
       this.Aneg,

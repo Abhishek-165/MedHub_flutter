@@ -1,7 +1,9 @@
-import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 import 'dart:convert';
+
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:http/http.dart' as http;
 import 'package:med/drawer.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -26,7 +28,6 @@ class _NewsState extends State<News> {
         if (k == "articles") {
           for (var x in v) {
             Map s = x;
-            print(x["title"]);
             if (s["title"] != null &&
                 s["url"] != null &&
                 s["urlToImage"] != null &&
@@ -79,9 +80,9 @@ class _NewsState extends State<News> {
                   if (snapshot.data == null) {
                     return Container(
                       child: Center(
-                          child: Text(
-                        "Loading....",
-                        style: TextStyle(fontWeight: FontWeight.bold),
+                          child: SpinKitFadingCircle(
+                            color: Colors.red,
+                            size: 50,
                       )),
                     );
                   } else {
